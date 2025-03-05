@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     private float camCurXRot; // 현재 카메라의 X 회전 값
     public float lookSensitivity; // 마우스 감도
 
+    public Action inventory;
+
     private Vector2 mouseDelta; // 마우스 이동 입력값
 
     [HideInInspector] // 인스펙터에서 숨김 (다른 스크립트에서는 접근 가능)
@@ -126,9 +128,20 @@ public class PlayerController : MonoBehaviour
         return false; // 네 개의 레이 중 하나도 바닥과 충돌하지 않으면 false 반환
     }
 
-    // 마우스 커서 상태 변경 함수
-    public void ToggleCursor(bool toggle)
+    public void OnInventory(InputAction.CallbackContext context)
     {
+        if (context.phase == InputActionPhase.Started)
+        {
+            inventory?.Invoke();
+            ToggleCursor();
+        }
+    }
+
+    // 마우스 커서 상태 변경 함수
+    public void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+
         // 커서 잠금 상태 변경 (toggle이 true이면 커서를 해제하고, false이면 잠금)
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         

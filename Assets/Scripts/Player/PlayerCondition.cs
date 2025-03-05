@@ -12,8 +12,8 @@ public class PlayerCondition : MonoBehaviour , IDamagalbe
     public UICondition uiCondition;
 
     Condition health {get {return uiCondition.health;}}
-    Condition hunger {get {return uiCondition.health;}}
-    Condition stamina {get {return uiCondition.health;}}
+    Condition hunger {get {return uiCondition.hunger;}}
+    Condition stamina {get {return uiCondition.stamina;}}
 
     public float noHungerHealthDecay;
 
@@ -42,9 +42,9 @@ public class PlayerCondition : MonoBehaviour , IDamagalbe
         health.Add(amount);
     }
 
-    public void Eet(float amount)
+    public void Eat(float amount)
     {
-        health.Add(amount);
+        hunger.Add(amount);
     }
 
     public void Die()
