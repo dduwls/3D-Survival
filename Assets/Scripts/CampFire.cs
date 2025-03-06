@@ -9,7 +9,7 @@ public class CampFire : MonoBehaviour
     public float damageRate; // 데미지를 가하는 주기 (초 단위)
 
     // 데미지를 받을 수 있는 객체를 저장할 리스트
-    List<IDamagalbe> things = new List<IDamagalbe>();
+    List<IDamagable> things = new List<IDamagable>();
 
     void Start()
     {
@@ -30,9 +30,9 @@ public class CampFire : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // IDamagalbe 인터페이스를 가진 객체인지 확인하고, 맞다면 리스트에 추가
-        if (other.TryGetComponent(out IDamagalbe damagalbe))
+        if (other.TryGetComponent(out IDamagable damagable))
         {
-            things.Add(damagalbe);
+            things.Add(damagable);
         }
     }
 
@@ -40,7 +40,7 @@ public class CampFire : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // IDamagalbe 인터페이스를 가진 객체인지 확인하고, 맞다면 리스트에서 제거
-        if (other.TryGetComponent(out IDamagalbe damagable))
+        if (other.TryGetComponent(out IDamagable damagable))
         {
             things.Remove(damagable);
         }

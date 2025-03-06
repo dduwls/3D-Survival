@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagalbe
+public interface IDamagable
 {
     void TakePhysicalDamage(int damage);
 }
-public class PlayerCondition : MonoBehaviour , IDamagalbe
+public class PlayerCondition : MonoBehaviour , IDamagable
 {   
     public UICondition uiCondition;
 
@@ -36,7 +36,15 @@ public class PlayerCondition : MonoBehaviour , IDamagalbe
             Die();
         }
     }
-
+    public bool UseStamina(float amount)
+{
+    if(stamina.curValue - amount < 0f)
+    {
+        return false;
+    }
+    stamina.Subtract(amount);
+    return true;
+}
     public void Heal(float amount)
     {
         health.Add(amount);

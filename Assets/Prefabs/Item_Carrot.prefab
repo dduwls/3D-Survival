@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9048587437900979647}
   - component: {fileID: 801530701182061874}
   - component: {fileID: 8440498682818251883}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Carrot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7105850272748079883}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.63, y: 2.061636, z: -1.7550926}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2725253383784722630}
   - component: {fileID: 7721266607770150073}
   - component: {fileID: 2954988826751369736}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Carrot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

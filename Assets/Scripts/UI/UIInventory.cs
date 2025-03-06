@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -220,13 +218,48 @@ public class UIInventory : MonoBehaviour
 
         if(selectedItem.quantity <= 0)
         {
-            selectedItem = null;
-            slots[selectedItemIndex].item = null;
-            selectedItemIndex =  -1;
+            if (slots[selectedItemIndex].equipped)
+            {
+                UnEquip(selectedItemIndex);
+            }
+
+            selectedItem.item = null;
             ClearSelectedItemWindow();
         }
 
         UpdateUI();
+    }
+
+    public void OnEquipButton()
+    {
+        if (slots[curEquipIndex].equipped)
+        {
+            UnEquip(curEquipIndex);
+        }
+
+        slots[selectedItemIndex].equipped = true;
+        curEquipIndex = selectedItemIndex;
+        CharacterManager.Instance.Player.equip.EquipNew(selectedItem.item);
+        UpdateUI();
+
+        SelectItem(selectedItemIndex);
+    }
+
+    void UnEquip(int index)
+    {
+        slots[index].equipped = false;
+        CharacterManager.Instance.Player.equip.UnEquip();
+        UpdateUI();
+
+        if(selectedItemIndex == index)
+        {
+            SelectItem(selectedItemIndex);
+        }
+    }
+
+    public void OnUpEquipButton()
+    {
+        UnEquip(selectedItemIndex);
     }
 
     public bool HasItem(ItemData item, int quantity)
